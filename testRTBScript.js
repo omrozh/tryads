@@ -42,7 +42,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
   pbjs.que.push(() => {
     pbjs.addAdUnits(adUnits);
     pbjs.requestBids({
-      bidsBackHandler: initAdserver,
       timeout: PREBID_TIMEOUT
     });
   });
