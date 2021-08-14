@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(function(){
         callBids()
         recurrAds()
-    }, 2000)
+    }, 15000)
   }
 
   recurrAds()
