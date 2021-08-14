@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const adSlots = [];
   const PREBID_TIMEOUT = 1000;
   const FAILSAFE_TIMEOUT = 3000;
-  const region = getParameterByName('region') || 'eu';
+  const region = "prebid-eu"
   let adUnits;
 
   document.querySelectorAll('.adSlot').forEach(node => {
