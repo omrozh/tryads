@@ -46,9 +46,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
       });
     });
   }
+  callBids();
   
   function recurrAds(){
     setTimeout(function(){
+        alert("Recall")
         callBids();
         recurrAds();
     }, 2000)
