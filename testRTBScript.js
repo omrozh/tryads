@@ -4,7 +4,7 @@ class adUnit {
     this.code = `${slot}`;
     this.mediaTypes = {
         banner: {
-          sizes: [slot.replace('test-site-banner-', '').split('x').map(dimension => Number(dimension))],
+          sizes: [slot.replace('inads-test-banner-', '').split('x').map(dimension => Number(dimension))],
         }
     },
       this.bids = [
