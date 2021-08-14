@@ -1,32 +1,11 @@
 const GAM_PATH = '/';
 class adUnit {
-  constructor(slot, native, region) {
+  constructor(slot, region) {
     this.code = `${slot}`;
     this.mediaTypes = {
-      ...(native && {
-        native: {
-          title: {
-            required: true,
-            sendId: true
-          },
-          body: {
-            required: false,
-            sendId: true
-          },
-          image: {
-            required: true,
-            // sendId: true
-          },
-          clickUrl: {
-            sendId: true
-          },
-        }
-      }),
-      ...(!native && {
         banner: {
           sizes: [slot.replace('test-site-banner-', '').split('x').map(dimension => Number(dimension))],
         }
-      }),
     },
       this.bids = [
         {
@@ -51,12 +30,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   document.querySelectorAll('.adSlot').forEach(node => {
     adSlots.push(node.id);
-    toggleSlotLoading(node);
   });
 
   adUnits = adSlots.map(slot => {
-    const isNative = slot.includes('native');
-    return new adUnit(slot, isNative, region);
+    return new adUnit(slot, region);
   });
 
   window.pbjs = pbjs || {};
