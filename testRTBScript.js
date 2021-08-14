@@ -1,4 +1,3 @@
-const GAM_PATH = '/';
 class adUnit {
   constructor(slot, region) {
     this.code = `${slot}`;
@@ -39,10 +38,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
   window.pbjs = pbjs || {};
   pbjs.que = pbjs.que || [];
 
-  pbjs.que.push(() => {
-    pbjs.addAdUnits(adUnits);
-    pbjs.requestBids({
-      timeout: PREBID_TIMEOUT
+  function callBids(){
+    pbjs.que.push(() => {
+      pbjs.addAdUnits(adUnits);
+      pbjs.requestBids({
+        timeout: PREBID_TIMEOUT
+      });
     });
-  });
+  }
+  
+  function recurrAds(){
+    setTimeout(function(){
+        callBids();
+        recurrAds();
+    }, 2000)
+    recurrAds();
+}
 });
