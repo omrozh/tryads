@@ -46,7 +46,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
       });
     });
   }
-  callBids();
   
   function recurrAds(){
     setTimeout(function(){
@@ -54,6 +53,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         callBids();
         recurrAds();
     }, 2000)
-    recurrAds();
-}
+  
+  recurrAds();
 });
