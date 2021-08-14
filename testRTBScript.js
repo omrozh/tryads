@@ -49,10 +49,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
   
   function recurrAds(){
     setTimeout(function(){
-        alert("Recall")
-        callBids();
-        recurrAds();
+        callBids()
+        recurrAds()
     }, 2000)
-  
-  recurrAds();
+  }
+
+  recurrAds()
 });
