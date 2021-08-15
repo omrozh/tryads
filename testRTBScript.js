@@ -48,8 +48,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
   
   function recurrAds(){
+    callBids()
     setTimeout(function(){
-        callBids()
         recurrAds()
     }, 15000)
   }
