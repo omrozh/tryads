@@ -101,6 +101,7 @@ function createAds(element, index){
             });
         }
         callBids()
+        return "RTBHOUSE"
     }
 
     var img = blob;
