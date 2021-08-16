@@ -105,6 +105,7 @@ function createAds(element, index){
         if(index == 0){
             callBidsRTBH()
         }
+        return;
     }
 
     var img = blob;
