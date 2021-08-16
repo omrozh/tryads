@@ -136,6 +136,7 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadsquare"){
         element.setAttribute("padding-bottom", "100%")
     }
+      return true;
 })
 }
 
