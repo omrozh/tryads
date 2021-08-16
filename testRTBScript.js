@@ -102,8 +102,9 @@ function createAds(element, index){
         if (element.getAttribute("name") == "inadstandard") {
             element.setAttribute("id", "inads-test-banner-600x160")
         }
-        console.log("REQUEST BIDS")
-        return false;
+        if(index == 0){
+            callBidsRTBH()
+        }
     }
 
     var img = blob;
@@ -136,7 +137,6 @@ function createAds(element, index){
     if(element.getAttribute("name") == "inadsquare"){
         element.setAttribute("padding-bottom", "100%")
     }
-      return true;
 })
 }
 
@@ -196,12 +196,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    alert(createAds(adElements[i], i))
-    if(!false){
-        console.log("REQUESTING BIDS...")
-        callBidsRTBH()
-        break;
-    }
+    createAds(adElements[i], i)
 }
 
 function inadsclick(index, elemnt){
@@ -231,16 +226,12 @@ function elementInViewport(el) {
 
 function timerAdsRefresh(){
     const ads = document.getElementsByClassName("inads")
-    var result = createAds(ads[i], i);
     for(var i = 0; i < ads.length; i++){
         if(!elementInViewport(ads[i])){
             continue
         }
-        if(!result){
-            callBidsRTBH()
-            return "END"
-        }   
     }
+    createAds(ads[i], i);
 }
 
 function recurrAds(){
