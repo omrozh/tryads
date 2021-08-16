@@ -80,7 +80,7 @@ function createAds(element, index){
         const PREBID_TIMEOUT = 1000;
         const FAILSAFE_TIMEOUT = 3000;
         const region = "prebid-eu"
-        let adUnits;
+        let adUnits = [];
         
         adSlots.push(element.id);
         
