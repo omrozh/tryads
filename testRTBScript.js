@@ -233,8 +233,8 @@ function timerAdsRefresh(){
         if(!elementInViewport(ads[i])){
             continue
         }
+        createAds(ads[i], i, ads.length);
     }
-    createAds(ads[i], i, ads.length);
 }
 
 function recurrAds(){
