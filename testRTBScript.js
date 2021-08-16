@@ -193,7 +193,10 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-  createAds(adElements[i], i);
+    var result = createAds(adElements[i], i)
+    if(result == "RTBHOUSE"){
+        break;
+    };
 }
 
 function inadsclick(index, elemnt){
@@ -228,7 +231,10 @@ function timerAdsRefresh(){
             console.log("Hi1")
             continue
         }
-        createAds(ads[i], i)
+        var result = createAds(ads[i], i)
+        if(result == "RTBHOUSE"){
+            break;
+        };
         console.log("perfect1")
     }
 }
