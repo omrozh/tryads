@@ -100,7 +100,11 @@ function createAds(element, index){
                 });
             });
         }
-        callBids()
+        
+        if(index == 0){
+            callBids()
+            alert(index)
+        }
         return "RTBHOUSE"
     }
 
@@ -193,10 +197,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    var result = createAds(adElements[i], i)
-    if(result == "RTBHOUSE"){
-        break;
-    };
+    createAds(adElements[i], i)
 }
 
 function inadsclick(index, elemnt){
@@ -228,14 +229,9 @@ function timerAdsRefresh(){
     const ads = document.getElementsByClassName("inads")
     for(var i = 0; i < ads.length; i++){
         if(!elementInViewport(ads[i])){
-            console.log("Hi1")
             continue
         }
-        var result = createAds(ads[i], i)
-        if(result == "RTBHOUSE"){
-            break;
-        };
-        console.log("perfect1")
+        createAds(ads[i], i)
     }
 }
 
