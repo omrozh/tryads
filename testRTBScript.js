@@ -23,6 +23,10 @@ class adUnit {
     }
   };
 
+function initAdServer(){
+    if (pbjs.initAdserverSet) return;
+    pbjs.initAdserverSet = true;
+}
 
 
 function callBidsRTBH() {
