@@ -2,6 +2,7 @@ let urlfinal = ""
 let adname = ""
 let apiKey = ""
 let textcontent = ""
+window.initRTB = false
 
 class adUnit {
     constructor(slot, region) {
@@ -42,9 +43,6 @@ function callBidsRTBH(){
     
     pbjs.que.push(() => {
         pbjs.addAdUnits(adUnits);
-        pbjs.requestBids({
-            timeout: PREBID_TIMEOUT
-        })
     });
 }
 
@@ -103,7 +101,17 @@ function createAds(element, index, total){
         }
         
         if(index === (total - 1)){
-            callBidsRTBH()
+            window.initRTB = true;
+            if(!window.initRTB)
+                callBidsRTBH()
+            
+            pbjs.que.push(function() {
+                pbjs.requestBids({
+                    timeout: 1000
+                })
+            });
+                    
+        })
         }
         return;
     }
