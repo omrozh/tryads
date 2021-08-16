@@ -195,7 +195,8 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    if(createAds(adElements[i], i) == "REQUEST BIDS"){
+    var result = createAds(adElements[i], i);
+    if(result === "REQUEST BIDS"){
         console.log("REQUESTING BIDS...")
         callBidsRTBH()
         break;
@@ -229,11 +230,12 @@ function elementInViewport(el) {
 
 function timerAdsRefresh(){
     const ads = document.getElementsByClassName("inads")
+    var result = createAds(ads[i], i);
     for(var i = 0; i < ads.length; i++){
         if(!elementInViewport(ads[i])){
             continue
         }
-        if(createAds(ads[i], i) == "REQUEST BIDS"){
+        if(result === "REQUEST BIDS"){
             callBidsRTBH()
             return "END"
         }   
