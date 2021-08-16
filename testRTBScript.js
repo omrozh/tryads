@@ -103,9 +103,7 @@ function createAds(element, index){
             element.setAttribute("id", "inads-test-banner-600x160")
         }
         
-        callBids()
-        
-        return "REQUESTED BIDS"
+        return "REQUEST BIDS"
     }
 
     var img = blob;
@@ -197,7 +195,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    if(createAds(adElements[i], i) == "REQUESTED BIDS"){
+    if(createAds(adElements[i], i) == "REQUEST BIDS"){
         callBidsRTBH()
         break;
     }
@@ -234,7 +232,7 @@ function timerAdsRefresh(){
         if(!elementInViewport(ads[i])){
             continue
         }
-        if(createAds(ads[i], i) == "REQUESTED BIDS"){
+        if(createAds(ads[i], i) == "REQUEST BIDS"){
             callBidsRTBH()
             return "END"
         }   
