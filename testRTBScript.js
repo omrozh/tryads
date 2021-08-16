@@ -234,7 +234,7 @@ function timerAdsRefresh(){
             continue
         }
     }
-    createAds(ads[i], i, adElements.length);
+    createAds(ads[i], i, ads.length);
 }
 
 function recurrAds(){
