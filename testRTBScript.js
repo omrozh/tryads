@@ -29,7 +29,7 @@ function callBidsRTBH() {
     const PREBID_TIMEOUT = 1000;
     const region = "prebid-eu";
     var adSlots = [];
-    var adUnits;
+    let adUnits;
     
     document.querySelectorAll('.inads').forEach(node => {
         adSlots.push(node.id);
