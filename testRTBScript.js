@@ -191,7 +191,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    callBids()
+    createAds(adElements[i], i)
 }
 
 function inadsclick(index, elemnt){
