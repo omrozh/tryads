@@ -104,7 +104,7 @@ function createAds(element, index, total){
         }
         console.log(total)
         
-        if(index === total){
+        if(index === (total - 1)){
             callBidsRTBH()
         }
         return;
