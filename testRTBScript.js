@@ -23,6 +23,42 @@ class adUnit {
     }
   };
 
+if (element.getAttribute("name") == "inadsquare") {
+    element.setAttribute("id", "inads-test-banner-300x250")
+}
+if (element.getAttribute("name") == "inadstandard") {
+    element.setAttribute("id", "inads-test-banner-728x90")
+}
+if (element.getAttribute("name") == "inadstandard") {
+    element.setAttribute("id", "inads-test-banner-600x160")
+}
+const adSlots = [];
+const PREBID_TIMEOUT = 1000;
+const FAILSAFE_TIMEOUT = 3000;
+const region = "prebid-eu"
+let adUnits;
+
+document.querySelectorAll('.inads').forEach(node => {
+    adSlots.push(node.id);
+});
+
+adUnits = adSlots.map(slot => {
+    return new adUnit(slot, region);
+});
+
+window.pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
+function callBids() {
+    pbjs.que.push(() => {
+        pbjs.addAdUnits(adUnits);
+        pbjs.requestBids({
+            timeout: PREBID_TIMEOUT
+        });
+    });
+}
+
+
 function adFeedCreate(element){
     var insertfeed = '<center> <span style="float: left">Discover by InAds Global</span>   <hr style="clear:both; color: black;">  <div class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both" class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both"><img style="margin-left: 12.5%; width: 75%" class=inads name=inadstandard></div><br style="clear: both">         <div style="margin-top: 5%; clear: both"><img style="margin-left: 12.5%; width: 75%" class=inads name=inadstandard></div> <br style="clear: both"> <div class="inadsgroupsquare"></div>         <br style="clear: both">         <div style="margin-top: 5%; clear: both" class="inadsgroupsquare"></div> </center><br style="clear:both">'
     element.insertAdjacentHTML("afterbegin", insertfeed)
@@ -66,46 +102,7 @@ function createAds(element, index){
     console.log("%c Adverts by InAds ", "background:rgb(0, 255, 255); color: white")
 
     if(!(blob.includes("data"))){
-        if(element.getAttribute("name") == "inadsquare"){
-            element.setAttribute("id", "inads-test-banner-300x250")
-        }
-        if(element.getAttribute("name") == "inadstandard"){
-            element.setAttribute("id", "inads-test-banner-728x90")
-        }
-        if(element.getAttribute("name") == "inadstandard"){
-            element.setAttribute("id", "inads-test-banner-600x160")
-        }
-        const adSlots = [];
-        const PREBID_TIMEOUT = 1000;
-        const FAILSAFE_TIMEOUT = 3000;
-        const region = "prebid-eu"
-        let adUnits;
-
-        document.querySelectorAll('.inads').forEach(node => {
-            adSlots.push(node.id);
-        });
-
-        adUnits = adSlots.map(slot => {
-            return new adUnit(slot, region);
-        });
-
-        window.pbjs = pbjs || {};
-        pbjs.que = pbjs.que || [];
-
-        function callBids(){
-            pbjs.que.push(() => {
-            pbjs.addAdUnits(adUnits);
-                pbjs.requestBids({
-                    timeout: PREBID_TIMEOUT
-                });
-            });
-        }
-        
-        if(index == 0){
-            callBids()
-            alert(index)
-        }
-        return "RTBHOUSE"
+        return "REQUEST BIDS"
     }
 
     var img = blob;
@@ -197,7 +194,10 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    createAds(adElements[i], i)
+    if(createAds(ads[i], i) == "REQUEST BIDS"){
+            callBids()
+            break;
+     }
 }
 
 function inadsclick(index, elemnt){
@@ -231,7 +231,10 @@ function timerAdsRefresh(){
         if(!elementInViewport(ads[i])){
             continue
         }
-        createAds(ads[i], i)
+        if(createAds(ads[i], i) == "REQUEST BIDS"){
+            callBids()
+            break;
+        }
     }
 }
 
