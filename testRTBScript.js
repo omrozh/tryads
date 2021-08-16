@@ -102,7 +102,6 @@ function createAds(element, index, total){
         if (element.getAttribute("name") == "inadstandard") {
             element.setAttribute("id", "inads-test-banner-600x160")
         }
-        console.log(total)
         
         if(index === (total - 1)){
             callBidsRTBH()
