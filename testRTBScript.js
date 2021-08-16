@@ -24,12 +24,16 @@ class adUnit {
     }
   };
 
-function callBidsRTBH(){
+function initBidsRTBH(){
     const PREBID_TIMEOUT = 1000;
     const region = "prebid-eu";
     var adSlots = [];
     let adUnits;
 
+    if(window.initRTB){
+        return;
+    }    
+    
     window.pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
 
@@ -44,6 +48,7 @@ function callBidsRTBH(){
     pbjs.que.push(() => {
         pbjs.addAdUnits(adUnits);
     });
+    window.initRTB = true;
 }
 
 
@@ -101,9 +106,7 @@ function createAds(element, index, total){
         }
         
         if(index === (total - 1)){
-            window.initRTB = true;
-            if(!window.initRTB)
-                callBidsRTBH()
+            initBidsRTBH()
             
             pbjs.que.push(function() {
                 pbjs.requestBids({
