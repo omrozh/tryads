@@ -80,7 +80,7 @@ function createAds(element, index){
         const PREBID_TIMEOUT = 1000;
         const region = "prebid-eu"
         
-        var adBidUnit = adUnit(element.id, region);
+        var adBidUnit = new adUnit(element.id, region);
         
         window.pbjs = pbjs || {};
         pbjs.que = pbjs.que || [];
