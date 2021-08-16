@@ -2,6 +2,7 @@ let urlfinal = ""
 let adname = ""
 let apiKey = ""
 let textcontent = ""
+window.init = false
 
 class adUnit {
     constructor(slot, region) {
@@ -23,29 +24,32 @@ class adUnit {
     }
   };
 
-const PREBID_TIMEOUT = 1000;
-const region = "prebid-eu";
-var adSlots = [];
-let adUnits;
+function initADS(){
+    window.init = true;
+    const PREBID_TIMEOUT = 1000;
+    const region = "prebid-eu";
+    var adSlots = [];
+    let adUnits;
 
-window.pbjs = pbjs || {};
-pbjs.que = pbjs.que || [];
+    window.pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
 
-document.querySelectorAll('.inads').forEach(node => {
-    adSlots.push(node.id);
-});
-adUnits = adSlots.map(slot => {
-    return new adUnit(slot, region);
-});
-    
-pbjs.addAdUnits(adUnits);
-
-function callBidsRTBH() {
-    pbjs.que.push(() => {
-        pbjs.requestBids({
-            timeout: PREBID_TIMEOUT
-        });
+    document.querySelectorAll('.inads').forEach(node => {
+        adSlots.push(node.id);
     });
+    adUnits = adSlots.map(slot => {
+        return new adUnit(slot, region);
+    });
+
+    pbjs.addAdUnits(adUnits);
+
+    function callBidsRTBH() {
+        pbjs.que.push(() => {
+            pbjs.requestBids({
+                timeout: PREBID_TIMEOUT
+            });
+        });
+    }
 }
 
 
@@ -103,6 +107,9 @@ function createAds(element, index, total){
         }
         
         if(index === (total - 1)){
+            if(!window.init){
+                initADS();
+            }
             callBidsRTBH()
         }
         return;
