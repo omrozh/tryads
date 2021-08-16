@@ -43,8 +43,8 @@ function initADS(){
 
     
     pbjs.que.push(() => {
+        pbjs.addAdUnits(adUnits);
         pbjs.requestBids({
-            pbjs.addAdUnits(adUnits);
             timeout: PREBID_TIMEOUT
         })
     });
