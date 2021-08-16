@@ -76,25 +76,18 @@ function createAds(element, index){
         if (element.getAttribute("name") == "inadstandard") {
             element.setAttribute("id", "inads-test-banner-600x160")
         }
-        const adSlots = [];
+        
         const PREBID_TIMEOUT = 1000;
-        const FAILSAFE_TIMEOUT = 3000;
         const region = "prebid-eu"
-        let adUnits = [];
         
-        adSlots.push(element.id);
+        var adBidUnit = adUnit(element.id, region);
         
-        adUnits = adSlots.map(slot => {
-            return new adUnit(slot, region);
-        });
         window.pbjs = pbjs || {};
         pbjs.que = pbjs.que || [];
-        
-        console.log(adUnits)
 
         function callBids() {
             pbjs.que.push(() => {
-                pbjs.addAdUnits(adUnits);
+                pbjs.addAdUnits([adBidUnit]);
                 pbjs.requestBids({
                     timeout: PREBID_TIMEOUT
                 });
