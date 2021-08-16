@@ -46,6 +46,7 @@ function initADS(){
         pbjs.requestBids({
             pbjs.addAdUnits(adUnits);
             timeout: PREBID_TIMEOUT
+        })
     });
 }
 
@@ -53,8 +54,8 @@ function callBidsRTBH() {
         pbjs.que.push(() => {
             pbjs.requestBids({
                 timeout: PREBID_TIMEOUT
+            });
         });
-    });
 }
 
 
