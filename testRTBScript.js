@@ -85,7 +85,7 @@ function adGroupCreateSquare(element){
     element.insertAdjacentHTML("afterbegin", insertadgroupersquare + insertadgroupersquare + insertadgroupersquare + insertadgroupersquare)
 }
 
-function createAds(element, index){
+function createAds(element, index, total){
   fetch("https://www.inadsglobal.com/view/" + element.getAttribute("name") + "/" + document.title)
   .then(res=>{adname = res.url.substring(res.url.lastIndexOf("/") + 1); element.setAttribute('onclick', "inadsclick(" + adname + ", this)"); return res.text()})
   .then(blob=>{
@@ -102,7 +102,7 @@ function createAds(element, index){
         if (element.getAttribute("name") == "inadstandard") {
             element.setAttribute("id", "inads-test-banner-600x160")
         }
-        if(index == 0){
+        if(index === total){
             callBidsRTBH()
         }
         return;
@@ -197,7 +197,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    createAds(adElements[i], i)
+    createAds(adElements[i], i, adElements.length)
 }
 
 function inadsclick(index, elemnt){
@@ -232,7 +232,7 @@ function timerAdsRefresh(){
             continue
         }
     }
-    createAds(ads[i], i);
+    createAds(ads[i], i, adElements.length);
 }
 
 function recurrAds(){
