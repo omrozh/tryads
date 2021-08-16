@@ -89,6 +89,8 @@ function createAds(element, index){
         });
         window.pbjs = pbjs || {};
         pbjs.que = pbjs.que || [];
+        
+        console.log(adUnits)
 
         function callBids() {
             pbjs.que.push(() => {
