@@ -23,30 +23,27 @@ class adUnit {
     }
   };
 
-function initAdServer(){
-    if (pbjs.initAdserverSet) return;
-    pbjs.initAdserverSet = true;
-}
+const PREBID_TIMEOUT = 1000;
+const region = "prebid-eu";
+var adSlots = [];
+let adUnits;
 
+window.pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
+document.querySelectorAll('.inads').forEach(node => {
+    adSlots.push(node.id);
+});
+adUnits = adSlots.map(slot => {
+    return new adUnit(slot, region);
+});
+    
+pbjs.addAdUnits(adUnits);
 
 function callBidsRTBH() {
-    const PREBID_TIMEOUT = 1000;
-    const region = "prebid-eu";
-    var adSlots = [];
-    let adUnits;
     
-    document.querySelectorAll('.inads').forEach(node => {
-        adSlots.push(node.id);
-    });
-    adUnits = adSlots.map(slot => {
-        return new adUnit(slot, region);
-    });
-
-    window.pbjs = pbjs || {};
-    pbjs.que = pbjs.que || [];
     
     pbjs.que.push(() => {
-        pbjs.addAdUnits(adUnits);
         pbjs.requestBids({
             timeout: PREBID_TIMEOUT
         });
