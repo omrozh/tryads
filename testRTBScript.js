@@ -196,6 +196,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 
 for(var i = 0; i < adElements.length; i++) {
     var result = createAds(adElements[i], i);
+    alert(result)
     if(result === "REQUEST BIDS"){
         console.log("REQUESTING BIDS...")
         callBidsRTBH()
