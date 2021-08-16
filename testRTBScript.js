@@ -99,6 +99,8 @@ function createAds(element, index){
             });
         }
         
+        callBids()
+        
         return "REQUESTED BIDS"
     }
 
