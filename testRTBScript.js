@@ -41,13 +41,18 @@ function initADS(){
         return new adUnit(slot, region);
     });
 
-    pbjs.addAdUnits(adUnits);
+    
+    pbjs.que.push(() => {
+        pbjs.requestBids({
+            pbjs.addAdUnits(adUnits);
+            timeout: PREBID_TIMEOUT
+    });
 }
 
 function callBidsRTBH() {
         pbjs.que.push(() => {
             pbjs.requestBids({
-            timeout: PREBID_TIMEOUT
+                timeout: PREBID_TIMEOUT
         });
     });
 }
@@ -110,7 +115,9 @@ function createAds(element, index, total){
             if(!window.init){
                 initADS();
             }
-            callBidsRTBH()
+            else {
+                callBidsRTBH()
+            }
         }
         return;
     }
