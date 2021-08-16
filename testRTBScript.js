@@ -113,8 +113,6 @@ function createAds(element, index, total){
                     timeout: 1000
                 })
             });
-                    
-        })
         }
         return;
     }
