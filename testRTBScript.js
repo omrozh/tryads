@@ -42,14 +42,14 @@ function initADS(){
     });
 
     pbjs.addAdUnits(adUnits);
+}
 
-    function callBidsRTBH() {
+function callBidsRTBH() {
         pbjs.que.push(() => {
             pbjs.requestBids({
-                timeout: PREBID_TIMEOUT
-            });
+            timeout: PREBID_TIMEOUT
         });
-    }
+    });
 }
 
 
