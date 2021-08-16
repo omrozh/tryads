@@ -102,7 +102,7 @@ function createAds(element, index){
         if (element.getAttribute("name") == "inadstandard") {
             element.setAttribute("id", "inads-test-banner-600x160")
         }
-        
+        console.log("REQUEST BIDS")
         return "REQUEST BIDS"
     }
 
@@ -196,6 +196,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 
 for(var i = 0; i < adElements.length; i++) {
     if(createAds(adElements[i], i) == "REQUEST BIDS"){
+        console.log("REQUESTING BIDS...")
         callBidsRTBH()
         break;
     }
