@@ -41,8 +41,6 @@ adUnits = adSlots.map(slot => {
 pbjs.addAdUnits(adUnits);
 
 function callBidsRTBH() {
-    
-    
     pbjs.que.push(() => {
         pbjs.requestBids({
             timeout: PREBID_TIMEOUT
