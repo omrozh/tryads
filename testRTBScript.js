@@ -191,10 +191,7 @@ for(var i = 0; i < adGroupsHorizontal.length; i++){
 }
 
 for(var i = 0; i < adElements.length; i++) {
-    if(createAds(ads[i], i) == "REQUEST BIDS"){
-            callBids()
-            break;
-     }
+    callBids()
 }
 
 function inadsclick(index, elemnt){
@@ -228,10 +225,7 @@ function timerAdsRefresh(){
         if(!elementInViewport(ads[i])){
             continue
         }
-        if(createAds(ads[i], i) == "REQUEST BIDS"){
-            callBids()
-            break;
-        }
+        createAds(ads[i], i)
     }
 }
 
