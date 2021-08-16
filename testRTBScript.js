@@ -42,7 +42,7 @@ function callBidsRTBH() {
     pbjs.que = pbjs.que || [];
     
     pbjs.que.push(() => {
-        pbjs.addAdUnits([adUnits]);
+        pbjs.addAdUnits(adUnits);
         pbjs.requestBids({
             timeout: PREBID_TIMEOUT
         });
